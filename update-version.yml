@@ -3,7 +3,7 @@ name: Update Version JSON
 on:
   push:
     paths:
-      - 'libBlack.so'
+      - 'libGVoicePlugin.so'
 
 jobs:
   update-version:
