@@ -1,0 +1,28 @@
+name: Update Version JSON
+
+on:
+  push:
+    paths:
+      - 'libBlack.so'
+
+jobs:
+  update-version:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Generate version.json
+        run: |
+          TIMESTAMP=$(date +%s%3N)
+          echo "{ \"last_update\": $TIMESTAMP }" > version.json
+
+      - name: Commit and push version.json
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git add version.json
+          git commit -m "🔄 Auto-update version.json"
+          git push
+          
